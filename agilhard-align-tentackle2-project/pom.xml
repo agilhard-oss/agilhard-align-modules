@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-tentackle2-project</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Agilhard Align - Align Tentackle2 Project</name>
+  <description>Agilhard Align - Align Tentackel2 Project - Maven Tentackle2 Project Parent</description>
+
+
+  <parent>
+    <artifactId>agilhard-align-project</artifactId>
+    <groupId>net.agilhard.align</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../agilhard-align-project</relativePath>
+  </parent>
+
+  <organization>
+    <name>Agilhard.net</name>
+    <url>http://www.agilhard.net</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <email>bernd@bernd-eilers.net</email>
+      <name>Bernd Eilers</name>
+      <url>http://www.bernd-eilers.net</url>
+      <id>bei</id>
+    </developer>
+  </developers>
+
+  <packaging>pom</packaging>
+
+  <properties>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../../..</rootBasedir>
+
+    <wurbelizer.version>${wurbelizer2Version}</wurbelizer.version>
+    <!-- override the default wurbelDir for multi-module project -->
+    <wurbel.wurbelDir>${rootBasedir}/target/wurbel</wurbel.wurbelDir>
+
+    <tentackle.version>${tentackle2Version}</tentackle.version>
+    <tentackle.serviceDir>${project.build.directory}/generated-resources/services</tentackle.serviceDir>
+    <tentackle.testServiceDir>${project.build.directory}/generated-test-resources/services</tentackle.testServiceDir>
+    <tentackle.manifestDirectory>${project.build.directory}/generated-resources/manifest</tentackle.manifestDirectory>
+    <tentackle.modelDir>${wurbel.wurbelDir}/model</tentackle.modelDir>
+    <tentackle.sqlDir>${wurbel.wurbelDir}/sql</tentackle.sqlDir>
+    <tentackle.modelDefaults>remote, bind, size, autoselect, tracked, root, rootid, rootclassid</tentackle.modelDefaults>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Override a dependency by including it BEFORE the BOMs -->
+
+      <dependency>
+	<groupId>net.agilhard.align</groupId>
+        <artifactId>agilhard-align-tentackle2</artifactId>
+        <version>${version.netAgilhardAlign.AgilhardAlignModules}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.tentackle</groupId>
+          <artifactId>tentackle-maven-plugin</artifactId>
+          <version>${tentackle.version}</version>
+          <executions>
+            <execution>
+              <id>analyze</id>
+              <goals>
+                <goal>analyze</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>beaninfo</id>
+              <goals>
+                <goal>beaninfo</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <verbosity>info</verbosity>
+            <showCompileOutput>true</showCompileOutput>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.tentackle</groupId>
+          <artifactId>tentackle-check-maven-plugin</artifactId>
+          <version>${tentackle.version}</version>
+          <executions>
+            <execution>
+              <id>bundles</id>
+              <goals>
+                <goal>bundles</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>validations</id>
+              <goals>
+                <goal>validations</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <verbosity>info</verbosity>
+            <locales>en_US, de_DE</locales>
+            <scriptingLanguage>groovy</scriptingLanguage>
+            <showCompileOutput>true</showCompileOutput>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.tentackle</groupId>
+              <artifactId>tentackle-script-groovy</artifactId>
+              <version>${tentackle.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.tentackle</groupId>
+          <artifactId>tentackle-i18n-maven-plugin</artifactId>
+          <version>${tentackle.version}</version>
+          <configuration>
+            <verbosity>info</verbosity>
+            <locales>de</locales>
+            <url>${dbUrl}</url>
+            <user>${dbUser}</user>
+            <password>${dbPasswd}</password>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>postgresql</groupId>
+              <artifactId>postgresql</artifactId>
+              <version>${postgres.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.wurbelizer</groupId>
+          <artifactId>wurbelizer-maven-plugin</artifactId>
+          <version>${wurbelizer.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>wurbel</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <wurbletDependencies>
+              <wurbletDependency>
+                <groupId>org.tentackle</groupId>
+                <artifactId>tentackle-persistence-wurblets</artifactId>
+                <version>${tentackle.version}</version>
+              </wurbletDependency>
+            </wurbletDependencies>
+            <verbosity>info</verbosity>
+            <filesets>
+              <fileset>
+                <includes>
+                  <!-- PDO entity interfaces -->
+                  <include>**/pdo/md/*.java</include>
+                  <include>**/pdo/td/*.java</include>
+                </includes>
+              </fileset>
+              <fileset>
+                <includes>
+                  <!-- PDO persistence interfaces -->
+                  <include>**/pdo/md/persist/*.java</include>
+                  <include>**/pdo/td/persist/*.java</include>
+                  <!-- PDO domain interfaces -->
+                  <include>**/pdo/md/domain/*.java</include>
+                  <include>**/pdo/td/domain/*.java</include>
+                </includes>
+                <followSymlinks>false</followSymlinks>
+              </fileset>
+              <fileset>
+                <includes>
+                  <!-- domain implementations -->
+                  <include>**/domain/md/*.java</include>
+                  <include>**/domain/td/*.java</include>
+                  <!-- persistence implementations -->
+                  <include>**/persist/md/*.java</include>
+                  <include>**/persist/td/*.java</include>
+                </includes>
+                <followSymlinks>false</followSymlinks>
+              </fileset>
+              <fileset>
+                <includes>
+                  <!-- remote delegates -->
+                  <include>**/rmi/*.java</include>
+                </includes>
+                <followSymlinks>false</followSymlinks>
+              </fileset>
+            </filesets>
+            <wurbletPaths>
+              <param>org.tentackle.wurblet</param>
+              <param>org.tentackle.persist.wurblet</param>
+            </wurbletPaths>
+            <wurbletProperties>
+              <guardtype>netbeans</guardtype>
+              <foldtype>collapsed</foldtype>
+              <mapSchema>false</mapSchema>
+              <tablePrefix />
+              <model>${tentackle.modelDir}</model>
+              <backends>oracle, postgresql</backends>
+              <integrity>full</integrity>
+              <modelDefaults>${tentackle.modelDefaults}</modelDefaults>
+
+              <!-- domain specific column sizes -->
+              <orgunit_name>20</orgunit_name>
+
+
+            </wurbletProperties>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.tentackle</groupId>
+          <artifactId>tentackle-sql-maven-plugin</artifactId>
+          <version>${tentackle.version}</version>
+          <configuration>
+            <verbosity>info</verbosity>
+            <modelDefaults>${tentackle.modelDefaults}</modelDefaults>
+            <backendNames>all</backendNames>
+            <mapSchemas>false</mapSchemas>
+            <dumpDir>${wurbel.wurbelDir}/dump</dumpDir>
+            <dumpVariables>false</dumpVariables>
+            <dumpAsComment>false</dumpAsComment>
+            <backends>
+              <backend>
+                <url>${dbUrl}</url>
+                <user>${dbUser}</user>
+                <password>${dbPasswd}</password>
+                <schemaNames>td, md</schemaNames>
+                <migrationHints>
+                  <fileset>
+                    <directory>${project.basedir}/../src/main/migrate/postgres</directory>
+                    <includes>
+                      <include>**/*.hints</include>
+                    </includes>
+                  </fileset>
+                </migrationHints>
+                <minVersion>select version from migration order by since desc limit 1</minVersion>
+              </backend>
+            </backends>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>postgresql</groupId>
+              <artifactId>postgresql</artifactId>
+              <version>${postgres.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+      <!--  additional source directory for generated service files -->
+      <resource>
+        <directory>${tentackle.serviceDir}</directory>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <directory>${project.basedir}/src/test/resources</directory>
+      </testResource>
+      <testResource>
+        <directory>${tentackle.testServiceDir}</directory>
+      </testResource>
+    </testResources>
+
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenJavadocPlugin}</version>
+        <configuration>
+          <sourceFileExcludes>
+            <exclude>**/rmi/*.java</exclude>
+          </sourceFileExcludes>
+          <tags>
+            <tag>
+              <name>wurblet</name>
+              <placement>a</placement>
+              <head>Wurblet:</head>
+            </tag>
+          </tags>
+          <!-- don't complain about wurblet args -->
+          <additionalparam>-Xdoclint:none</additionalparam>
+          <stylesheetfile>${rootBasedir}/src/site/resources/css/apidocs.css</stylesheetfile>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </reporting>
+
+</project>

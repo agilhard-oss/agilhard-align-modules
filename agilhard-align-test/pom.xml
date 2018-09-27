@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-test</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <name>Agilhard Align - Align Test BOM</name>
+  <description>Agilhard Align - Align Test BOM</description>
+
+  <parent>
+    <artifactId>agilhard-align-modules</artifactId>
+    <groupId>net.agilhard.align</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <packaging>pom</packaging>
+
+  <properties>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../../..</rootBasedir>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- testing -->
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${version.junit.junit}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-junit</artifactId>
+        <version>${version.orgHamcrest}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>au.com.dius</groupId>
+        <artifactId>pact-jvm-consumer-junit_2.12</artifactId>
+        <version>${version.auComDius.pactJvm}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>au.com.dius</groupId>
+        <artifactId>pact-jvm-provider-junit_2.12</artifactId>
+        <version>${version.auComDius.pactJvm}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.dbunit</groupId>
+        <artifactId>dbunit</artifactId>
+        <version>${version.orgDbUnit.dbUnit}</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+	<groupId>org.jboss.arquillian.junit</groupId>
+	<artifactId>arquillian-junit-container</artifactId>
+	<scope>test</scope>
+	<version>${version.orgJbossArquillian}</version>
+      </dependency>
+
+      <dependency>
+	<groupId>io.fabric8</groupId>
+	<artifactId>fabric8-arquillian</artifactId>
+	<scope>test</scope>
+	<version>${version.ioFabric8Arquillian}</version>
+      </dependency>
+
+      <dependency>
+	<groupId>io.fabric8</groupId>
+	<artifactId>kubernetes-assertions</artifactId>
+	<scope>test</scope>
+	<version>${version.ioFabric8KubernetesAssertions}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>${version.orgTestng.testng}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+
+    </dependencies>
+  </dependencyManagement>
+
+</project>

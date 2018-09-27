@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-agilhard</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <name>Agilhard Align - Align Agilhard BOM</name>
+  <description>Agilhard Align - Align Agilhard BOM</description>
+
+  <parent>
+    <artifactId>agilhard-align-modules</artifactId>
+    <groupId>net.agilhard.align</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <packaging>pom</packaging>
+
+
+  <properties>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../../..</rootBasedir>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>net.agilhard.config</groupId>
+        <artifactId>agilhard-config-api</artifactId>
+        <version>${version.netAgilhardConfig.agilhardConfigApi}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.config</groupId>
+        <artifactId>agilhard-config-elements</artifactId>
+        <version>${version.netAgilhardConfig.agilhardConfigElements}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.config</groupId>
+        <artifactId>agilhard-config-sax</artifactId>
+        <version>${version.netAgilhardConfig.agilhardConfigSax}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.config</groupId>
+        <artifactId>agilhard-config-jackson</artifactId>
+        <version>${version.netAgilhardConfig.agilhardConfigJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-jsch-vfs-util</artifactId>
+        <version>${version.netAgilhardUtil.agilhardJschVfsUtil}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-maven-embedder</artifactId>
+        <version>${version.netAgilhardUtil.agilhardMavenEmbedder}</version>
+      </dependency>
+
+    <dependency>
+      <groupId>net.agilhard.util</groupId>
+      <artifactId>agilhard-vfs-misc-providers</artifactId>
+      <version>${version.netAgilhardUtil.agilhardVfsMiscProviders}</version>
+      <type>pom</type>
+    </dependency>
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-util-misc</artifactId>
+        <version>${version.netAgilhardUtil.agilhardUtilMisc}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-lib-pty</artifactId>
+        <version>${version.netAgilhardUtil.agilhardLibPty}</version>
+        <type>so</type>
+        <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-util-java-native</artifactId>
+        <version>${version.netAgilhardUtil.agilhardUtilJavaNative}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-vt100-terminal-emulation-common</artifactId>
+        <version>${version.netAgilhardGui.agilhardVt100TerminalEmulationCommon}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-vt100-terminal-emulation-swing</artifactId>
+        <version>${version.netAgilhardGui.agilhardVt100TerminalEmulationSwing}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-vfs-bundle-provider</artifactId>
+        <version>${version.netAgilhardUtil.agilhardVfsBundleProvider}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.maven</groupId>
+        <artifactId>agilhard-maven-plugin-common</artifactId>
+        <version>${version.netAgilhardMaven.agilhardMavenPluginCommon}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.maven</groupId>
+        <artifactId>agilhard-config-maven-plugin</artifactId>
+        <version>${version.netAgilhardMaven.agilhardConfigMavenPlugin}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.maven</groupId>
+        <artifactId>agilhard-develop-maven-plugin</artifactId>
+        <version>${version.netAgilhardMaven.agilhardDevelopMavenPlugin}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-nexus-client</artifactId>
+        <version>${version.netAgilhardUtil.agilhardNexusClient}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-jenkins-client</artifactId>
+        <version>${version.netAgilhardUtil.agilhardJenkinsClient}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard.util</groupId>
+        <artifactId>agilhard-dotgraph</artifactId>
+        <version>${version.netAgilhardUtil.agilhardDotgraph}</version>
+      </dependency>
+
+      <dependency>
+	<groupId>net.agilhard.fixes</groupId>
+	<artifactId>agilhard-fixes-rsyntaxarea</artifactId>
+	<version>${version.netAgilhardFixes.agilhardFixesRsyntaxArea}</version>
+      </dependency>
+
+      <dependency>
+	<groupId>net.agilhard.fixes</groupId>
+	<artifactId>agilhard-fixes-jsch</artifactId>
+	<version>${version.netAgilhardFixes.agilhardFixesJsch}</version>
+      </dependency>
+
+      <dependency>
+	<groupId>net.agilhard.fork</groupId>
+	<artifactId>agilhard-fork-vfsjfilechooser2</artifactId>
+	<version>${version.netAgilhardForkVfsjfilechooser2}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.security</groupId>
+        <artifactId>agilhard-security-core</artifactId>
+        <version>${version.netAgilhardSecurity.agilhardSecurityCore}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.security</groupId>
+        <artifactId>agilhard-security-cas-client-support</artifactId>
+        <version>${version.netAgilhardSecurity.agilhardSecurityCasClientSupport}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.config</groupId>
+        <artifactId>agilhard-config-tablemodel</artifactId>
+        <version>${version.netAgilhardConfig.agilhardConfigTableModel}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-gui-framework</artifactId>
+        <version>${version.netAgilhardGui.agilhardGuiFramework}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-gui-fwk-swing</artifactId>
+        <version>${version.netAgilhardGui.agilhardGuiFwkSwing}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-gui-maven</artifactId>
+        <version>${version.netAgilhardGui.agilhardGuiMaven}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-gui-editor</artifactId>
+        <version>${version.netAgilhardGui.agilhardGuiEditor}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.gui</groupId>
+        <artifactId>agilhard-gui-terminal</artifactId>
+        <version>${version.netAgilhardGui.agilhardGuiTerminal}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.agilhard.framework</groupId>
+        <artifactId>agilhard-gui</artifactId>
+        <version>${version.netAgilhardFramework}</version>
+      </dependency>
+
+      <!-- com.jcraft fork -->
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch</artifactId>
+        <version>${version.netAgilhard.jsch}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jzlib</artifactId>
+        <type>jar</type>
+        <scope>runtime</scope>
+        <version>${version.netAgilhard.jzlib}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch.agentproxy.usocket-nc</artifactId>
+        <version>${version.netAgilhard.jschAgentproxy}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch.agentproxy.usocket-jna</artifactId>
+        <version>${version.netAgilhard.jschAgentproxy}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch.agentproxy.sshagent</artifactId>
+        <version>${version.netAgilhard.jschAgentproxy}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch.agentproxy.pageant</artifactId>
+        <version>${version.netAgilhard.jschAgentproxy}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch.agentproxy.jsch</artifactId>
+        <version>${version.netAgilhard.jschAgentproxy}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.agilhard</groupId>
+        <artifactId>jsch.agentproxy.core</artifactId>
+        <version>${version.netAgilhard.jschAgentproxy}</version>
+      </dependency>
+
+
+    </dependencies>
+  </dependencyManagement>
+
+</project>

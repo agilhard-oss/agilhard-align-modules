@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-kubernetes-project</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <name>Agilhard Align - Align Kubernetes Project</name>
+  <description>Agilhard Align - Align Project - Maven Kubernetes Project Parent</description>
+
+  <parent>
+    <artifactId>agilhard-align-project</artifactId>
+    <groupId>net.agilhard.align</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../agilhard-align-project</relativePath>
+  </parent>
+
+  <organization>
+    <name>Agilhard.net</name>
+    <url>http://www.agilhard.net</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <email>bernd@bernd-eilers.net</email>
+      <name>Bernd Eilers</name>
+      <url>http://www.bernd-eilers.net</url>
+      <id>bei</id>
+    </developer>
+  </developers>
+
+  <packaging>pom</packaging>
+
+  <properties>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../../..</rootBasedir>
+
+  </properties>
+
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Override a dependency by including it BEFORE the BOMs -->
+
+      <dependency>
+	<groupId>net.agilhard.align</groupId>
+        <artifactId>agilhard-align-microservices</artifactId>
+        <version>${version.netAgilhardAlign.AgilhardAlignModules}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+	<plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>fabric8-maven-plugin</artifactId>
+          <version>${version.ioFabric8.fabric8MavenPlugin}</version>
+	</plugin>
+
+	<plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+	  <version>${version.ioFabric8.dockerMavenPlugin}</version>
+	</plugin>
+
+	<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${version.orgApacheMavenPlugins.mavenEnforcerPlugin}</version>
+	</plugin>
+
+      </plugins>
+    </pluginManagement>
+
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <directory>${project.basedir}/src/test/resources</directory>
+      </testResource>
+    </testResources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-property</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireProperty>
+                  <property>file.encoding</property>
+                  <message>file.encoding not set!</message>
+                  <regex>^UTF-8$</regex>
+                  <regexMessage>file.encoding must be UTF-8</regexMessage>
+                </requireProperty>
+                <requireJavaVersion>
+                  <version>[${javac.version.require},)</version>
+                  <message>[ERROR] The currently supported version of Java is ${javac.version.require} or higher</message>
+                </requireJavaVersion>
+                <requireMavenVersion>
+                  <version>[${maven.version.require},)</version>
+                  <message>[ERROR] The currently supported version of Maven is ${maven.version.require} or higher</message>
+                </requireMavenVersion>
+                <requirePluginVersions>
+                  <banLatest>true</banLatest>
+                  <banRelease>true</banRelease>
+                  <banSnapshots>false</banSnapshots>
+                  <phases>clean,deploy,site</phases>
+                  <message>[ERROR] All maven plugin versions must be specified.</message>
+                </requirePluginVersions>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>fmp</id>
+            <goals>
+              <goal>resource</goal>
+              <goal>helm</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenPluginPlugin}</version>
+        <configuration>
+          <requirements>
+            <maven>3.0</maven>
+          </requirements>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenJavadocPlugin}</version>
+        <configuration>
+          <sourceFileExcludes>
+            <exclude>**/rmi/*.java</exclude>
+          </sourceFileExcludes>
+          <stylesheetfile>${rootBasedir}/src/site/resources/css/apidocs.css</stylesheetfile>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenJxrPlugin}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenProjectInfoReportsPlugin}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>${version.orgCodehauseMojo.versionsMavenPlugin}</version>
+        <reportSets>
+          <reportSet>
+            <id>versions</id>
+            <reports>
+              <report>dependency-updates-report</report>
+              <report>plugin-updates-report</report>
+              <report>property-updates-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <!-- generate sources and javadoc jar -->
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <quiet>true</quiet>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- check for vulnerabilities -->
+      <id>owasp</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>${version.orgOwasp.dependencyCheckMaven}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <repositories>
+  </repositories>
+
+</project>

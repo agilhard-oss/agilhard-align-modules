@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-misc</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <name>Agilhard Align - Align Misc BOM</name>
+  <description>Agilhard Align - Align Misc BOM</description>
+
+  <parent>
+    <artifactId>agilhard-align-modules</artifactId>
+    <groupId>net.agilhard.align</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <packaging>pom</packaging>
+
+
+  <properties>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../../..</rootBasedir>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- postgres -->
+      <dependency>
+	<groupId>org.postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>${version.orgPostgresql.postgresql}</version>
+      </dependency>
+
+      <!-- apache -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-vfs2</artifactId>
+        <version>${version.orgApacheCommons.commonsVfs2}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-vfs2-sandbox</artifactId>
+        <version>${version.orgApacheCommons.commonsVfs2}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <scope>runtime</scope>
+        <version>${version.commonsNet.commonsNet}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+        <scope>runtime</scope>
+        <version>${version.commonsCollections.commonsCollections}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-httpclient</groupId>
+        <artifactId>commons-httpclient</artifactId>
+        <version>${version.commonsHttpclient.commonsHttpclient}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${version.orgApachePoi.poi}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.jackrabbit</groupId>
+        <artifactId>jackrabbit-webdav</artifactId>
+        <version>${version.orgApacheJackrabbit.jackrabbitWebdav}</version>
+        <type>jar</type>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.ant</groupId>
+        <artifactId>ant</artifactId>
+        <version>${version.orgApacheAnt.ant}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${version.orgApacheCommons.commonsIo}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${version.commonsCodec.commonsCodec}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${version.orgApacheCommons.commonsLang3}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${version.commonsLang.commonsLang}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-compress</artifactId>
+        <version>${version.orgApacheCommons.commonsCompress}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${version.commonsIo.commonsIo}</version>
+      </dependency>
+
+      <!-- java jna -->
+      <dependency>
+        <groupId>net.java.dev.jna</groupId>
+        <artifactId>jna</artifactId>
+        <version>${version.netJavaDevJna.jna}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.java.dev.jna</groupId>
+        <artifactId>jna-platform</artifactId>
+        <version>${version.netJavaDevJna.jna}</version>
+      </dependency>
+
+
+
+      <!-- other stuff -->
+
+      <dependency>
+        <groupId>gnu.getopt</groupId>
+        <artifactId>java-getopt</artifactId>
+        <version>${version.gnuGetopt.javaGetopt}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${version.comGoogleGuava.guava}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>${version.orgYaml.snakeyaml}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>aopalliance</groupId>
+        <artifactId>aopalliance</artifactId>
+        <version>${version.aopalliance.aopalliance}</version>
+      </dependency>
+      <dependency>
+        <groupId>dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>${version.dom4j.dom4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>${version.javaxValidation.validationApi}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${version.orgApacheHttpcomponents.httpclient}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>${version.orgApacheHttpcomponents.httpcore}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.attoparser</groupId>
+        <artifactId>attoparser</artifactId>
+        <version>${version.orgAttoparser.attoparser}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy</artifactId>
+        <version>${version.orgCodehausGroovy.groovy}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${version.orgHibernate.hibernateValidator}</version>
+      </dependency>
+
+      <!-- FasterXML Jackson -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-jaxb-annotations</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-yaml</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-csv</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-xml</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-parameter-names</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jdk8</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${version.comFasterxmlJackson}</version>
+      </dependency>
+
+      <!-- tomcat -->
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-juli</artifactId>
+        <version>${version.orgApacheTomcat.tomcatJuli}</version>
+      </dependency>
+
+
+      <!-- Servlet APIs & Co -->
+
+      <!-- avoid to use this use javax.servlet-api instead -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <scope>provided</scope>
+        <version>${version.javaxServlet.servletApi}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${version.javaxServlet.javaxServletApi}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- maven -->
+      <dependency>
+        <groupId>org.apache.maven.plugin-tools</groupId>
+        <artifactId>maven-plugin-annotations</artifactId>
+        <version>${version.orgApacheMavenPluginTools.mavenPluginAnnotations}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.shared</groupId>
+        <artifactId>file-management</artifactId>
+        <version>${version.orgApacheMavenShared.fileManagement}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-compat</artifactId>
+        <version>${version.orgApacheMaven}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-core</artifactId>
+        <version>${version.orgApacheMaven}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-embedder</artifactId>
+        <version>${version.orgApacheMaven}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenDependencyPlugin}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-plugin-api</artifactId>
+        <version>${version.orgApacheMaven}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-file</artifactId>
+        <version>${version.orgApacheMavenWagon}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-http</artifactId>
+        <version>${version.orgApacheMavenWagon}</version>
+        <scope>runtime</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-provider-api</artifactId>
+        <version>${version.orgApacheMavenWagon}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.twdata.maven</groupId>
+        <artifactId>mojo-executor</artifactId>
+        <version>${version.orgTwdataMaven.mojoExecutor}</version>
+      </dependency>
+
+      <!-- sonatype -->
+      <dependency>
+        <groupId>org.sonatype.nexus</groupId>
+        <artifactId>nexus-rest-api-model</artifactId>
+        <version>${version.orgSonatypeNexus.nexusRestApiModel}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sonatype.plexus</groupId>
+        <artifactId>plexus-cipher</artifactId>
+        <version>${version.orgSonatypePlexus.plexusCipher}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-classworlds</artifactId>
+        <version>${version.orgCodehausPlexus.plexusClassworlds}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sonatype.plexus</groupId>
+        <artifactId>plexus-sec-dispatcher</artifactId>
+        <version>${version.orgSonatypePlexus.plexusSecDispatcher}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sonatype.aether</groupId>
+        <artifactId>aether-api</artifactId>
+        <scope>runtime</scope>
+        <version>${version.orgSonatypeAether}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sonatype.aether</groupId>
+        <artifactId>aether-util</artifactId>
+        <scope>runtime</scope>
+        <version>${version.orgSonatypeAether}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sonatype.aether</groupId>
+        <artifactId>aether-connector-wagon</artifactId>
+        <version>${version.orgEclipseAether.aetherConnectorWagon}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.aether</groupId>
+        <artifactId>aether-connector-wagon</artifactId>
+        <version>${version.orgEclipseAether.aetherConnectorWagon}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.maven.shared</groupId>
+        <artifactId>maven-jarsigner</artifactId>
+        <version>${version.orgApacheMavenShared.mavenJarsigner}</version>
+      </dependency>
+
+      <!-- com.fifesoft + dependencies -->
+      <dependency>
+        <groupId>org.mozilla</groupId>
+        <artifactId>rhino</artifactId>
+        <type>jar</type>
+        <scope>runtime</scope>
+        <version>${version.orgMozilla.rhino}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fifesoft</groupId>
+        <artifactId>rsyntaxtextarea</artifactId>
+        <version>${version.comFifesoft.rsyntaxtextarea}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fifesoft</groupId>
+        <artifactId>languagesupport</artifactId>
+        <version>${version.comFifesoft.languagesupport}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fifesoft</groupId>
+        <artifactId>autocomplete</artifactId>
+        <version>${version.comFifesoft.rsyntaxtextarea}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fifesoft</groupId>
+        <artifactId>rstaui</artifactId>
+        <version>${version.comFifesoft.rsyntaxtextarea}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fifesoft</groupId>
+        <artifactId>spellchecker</artifactId>
+        <version>${version.comFifesoft.rsyntaxtextarea}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.javaparser</groupId>
+        <artifactId>javaparser-core</artifactId>
+        <version>${version.comGithubJavaparser}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.platform</groupId>
+        <artifactId>org.eclipse.osgi</artifactId>
+        <version>${version.orgEclipsePlatform.orgEclipseOsgi}</version>
+      </dependency>
+
+     <dependency>
+        <groupId>com.sun.jersey</groupId>
+        <artifactId>jersey-client</artifactId>
+        <version>${version.comSunJersey.jerseyClient}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.sf.opencsv</groupId>
+        <artifactId>opencsv</artifactId>
+        <version>${version.netSfOpencsv.opencsv}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.diibadaaba.zipdiff</groupId>
+        <artifactId>zipdiff</artifactId>
+        <version>${version.netDiibadaabaZipdiff.zipdiff}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jsmiparser</groupId>
+        <artifactId>jsmiparser-api</artifactId>
+        <version>${version.orgJsmiparser}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jsmiparser</groupId>
+        <artifactId>jsmiparser-codegen</artifactId>
+        <version>${version.orgJsmiparser}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.snmp4j</groupId>
+        <artifactId>snmp4j</artifactId>
+        <version>${version.orgSnmp4j.snmp4j}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.snmp4j</groupId>
+        <artifactId>snmp4j-agent</artifactId>
+        <version>${version.orgSnmp4j.snmp4jAgent}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.reflections</groupId>
+        <artifactId>reflections</artifactId>
+        <version>${version.orgReflections.reflections}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- CAS Client -->
+      <dependency>
+        <groupId>org.jasig.cas.client</groupId>
+        <artifactId>cas-client-core</artifactId>
+        <version>${version.orgJasigCas.client}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>jcifs</groupId>
+        <artifactId>jcifs</artifactId>
+        <version>${version.jcifs.jcifs}</version>
+	<type>jar</type>
+	<scope>runtime</scope>
+      </dependency>
+
+ 
+    </dependencies>
+  </dependencyManagement>
+
+</project>

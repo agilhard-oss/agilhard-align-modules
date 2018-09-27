@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-logging</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <name>Agilhard Align - Align Logging BOM</name>
+  <description>Agilhard Align - Align Logging BOM</description>
+
+  <parent>
+    <artifactId>agilhard-align-modules</artifactId>
+    <groupId>net.agilhard.align</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <packaging>pom</packaging>
+
+  <properties>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../../..</rootBasedir>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Logging -->
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${version.orgSlf4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>log4j-over-slf4j</artifactId>
+        <type>jar</type>
+        <version>${version.orgSlf4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <type>jar</type>
+        <version>${version.orgSlf4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <type>jar</type>
+	<!-- need compile not runtime -->
+        <scope>compile</scope>
+        <version>${version.chQosLogback}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${version.orgSlf4j}</version>
+        <type>jar</type>
+      </dependency>
+
+      <dependency>
+        <groupId>com.googlecode.sli4j</groupId>
+        <artifactId>sli4j-slf4j-logback</artifactId>
+        <version>${version.comGooglecodeSli4j.sli4jSlf4jLogback}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>${version.commonsLogging.commonsLogging}</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+</project>

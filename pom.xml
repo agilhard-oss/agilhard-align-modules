@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>agilhard-align-modules</artifactId>
+  <groupId>net.agilhard.align</groupId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Agilhard Align - Align Parent Project</name>
+  <description>Agilhard Align - Align Parent Project</description>
+
+  <inceptionYear>2018</inceptionYear>
+  <url>${site.base.url}/${this.artifactId}</url>
+
+  <packaging>pom</packaging>
+
+  <organization>
+    <name>Agilhard.net</name>
+    <url>http://www.agilhard.net</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <email>bernd@bernd-eilers.net</email>
+      <name>Bernd Eilers</name>
+      <url>http://www.bernd-eilers.net</url>
+      <id>bei</id>
+    </developer>
+  </developers>
+
+  <properties>
+
+    <!-- the following properties must be defined in the user's .settings.xml and selected via a profile:
+
+      agilhard.service.domain = domain name suffix for agilhard services
+
+      scm.base.url        = url of the scm host (without repo name)
+
+      repo.id             = id of host to deploy the artifacts to
+      repo.snapshots.url  = url for snapshot artifacts
+      repo.releases.url   = url for release artifacts
+
+      site.id             = id of host to deploy the site docs to
+      site.base.url       = url for site docs host (without application name)
+
+      registry.id         = id of host to deploy the docker images to
+      registry.base.url   = url for docker registry
+
+    -->
+	<agilhard.service.domain>service.agilhard.net</agilhard.service.domain>
+	<scm.base.url>ssh://git@github.com:agilhard-oss</scm.base.url>
+	<repo.id>nexus3.${agilhard.service.domain}</repo.id>
+	<repo.releases.url>http://nexus3.${agilhard.service.domain}/content/repositories/agilhard_releases/</repo.releases.url>
+	<repo.snapshots.url>http://nexus3.${agilhard.service.domain}/content/repositories/agilhard_snapshots</repo.snapshots.url>
+	<site.id>docs.service.agilhard.net</site.id>
+	<site.base.url>http://docs.${agilhard.service.domain}</site.base.url>
+	<registry.id>docker-registry.service.agilhard.net</registry.id>
+	<registry.base.url>http://docker-registry.${agilhard.service.domain}</registry.base.url>
+
+    <!-- deployment Goal -->
+    <deployGoal>devel</deployGoal>
+
+    <!-- agilhard modules version-->
+    <agilhard.modules.version>${project.version}</agilhard.modules.version>
+
+    <!-- Root Basedir Setting -->
+    <rootBasedir>${project.basedir}/../..</rootBasedir>
+
+    <!-- Align Version -->
+    <version.netAgilhardAlign.AgilhardAlignModules>1.0-SNAPSHOT</version.netAgilhardAlign.AgilhardAlignModules>
+
+    <!-- == Dependency Versions == -->
+
+    <!-- tentackle2 + wurbelizer2 -->
+    <tentackle2Version>2.2-SNAPSHOT</tentackle2Version>
+    <wurbelizer2Version>2.2-SNAPSHOT</wurbelizer2Version>
+
+    <!-- Agilhard Modules -->
+
+    <version.netAgilhard.jsch>0.2.0</version.netAgilhard.jsch>
+    <version.netAgilhard.jschAgentproxy>0.1.0</version.netAgilhard.jschAgentproxy>
+    <version.netAgilhard.jzlib>1.2.0</version.netAgilhard.jzlib>
+
+    <version.netAgilhardConfig.agilhardConfigApi>1.0-SNAPSHOT</version.netAgilhardConfig.agilhardConfigApi>
+    <version.netAgilhardConfig.agilhardConfigElements>1.0-SNAPSHOT</version.netAgilhardConfig.agilhardConfigElements>
+    <version.netAgilhardConfig.agilhardConfigSax>1.0-SNAPSHOT</version.netAgilhardConfig.agilhardConfigSax>
+    <version.netAgilhardConfig.agilhardConfigJackson>1.0-SNAPSHOT</version.netAgilhardConfig.agilhardConfigJackson>
+    <version.netAgilhardConfig.agilhardConfigTableModel>1.0-SNAPSHOT</version.netAgilhardConfig.agilhardConfigTableModel>
+
+    <version.netAgilhardUtil.agilhardJschVfsUtil>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardJschVfsUtil>
+    <version.netAgilhardUtil.agilhardUtilMisc>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardUtilMisc>
+    <version.netAgilhardUtil.agilhardMavenEmbedder>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardMavenEmbedder>
+    <version.netAgilhardUtil.agilhardDotgraph>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardDotgraph>
+    <version.netAgilhardUtil.agilhardVfsMiscProviders>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardVfsMiscProviders>
+   <version.netAgilhardFixes.agilhardFixesRsyntaxArea>1.0-SNAPSHOT</version.netAgilhardFixes.agilhardFixesRsyntaxArea>
+    <version.netAgilhardFixes.agilhardFixesJsch>1.0-SNAPSHOT</version.netAgilhardFixes.agilhardFixesJsch>
+    <version.netAgilhardForkVfsjfilechooser2>1.0-SNAPSHOT</version.netAgilhardForkVfsjfilechooser2>
+
+    <version.netAgilhardUtil.agilhardVfsBundleProvider>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardVfsBundleProvider>
+    <version.netAgilhardGui.agilhardVt100TerminalEmulationCommon>1.0-SNAPSHOT</version.netAgilhardGui.agilhardVt100TerminalEmulationCommon>
+    <version.netAgilhardGui.agilhardVt100TerminalEmulationSwing>1.0-SNAPSHOT</version.netAgilhardGui.agilhardVt100TerminalEmulationSwing>
+    <version.netAgilhardUtil.agilhardLibPty>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardLibPty>
+    <version.netAgilhardUtil.agilhardUtilJavaNative>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardUtilJavaNative>
+    <version.netAgilhardUtil.agilhardNexusClient>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardNexusClient>
+    <version.netAgilhardUtil.agilhardJenkinsClient>1.0-SNAPSHOT</version.netAgilhardUtil.agilhardJenkinsClient>
+
+    <version.netAgilhardMaven.agilhardMavenPluginCommon>1.0-SNAPSHOT</version.netAgilhardMaven.agilhardMavenPluginCommon>
+    <version.netAgilhardMaven.agilhardConfigMavenPlugin>1.0-SNAPSHOT</version.netAgilhardMaven.agilhardConfigMavenPlugin>
+    <version.netAgilhardMaven.agilhardDevelopMavenPlugin>1.0-SNAPSHOT</version.netAgilhardMaven.agilhardDevelopMavenPlugin>
+
+    <version.netAgilhardSecurity.agilhardSecurityCore>1.0-SNAPSHOT</version.netAgilhardSecurity.agilhardSecurityCore>
+    <version.netAgilhardSecurity.agilhardSecurityCasClientSupport>1.0-SNAPSHOT</version.netAgilhardSecurity.agilhardSecurityCasClientSupport>
+    <version.netAgilhardMaven.agilhardConfigMavenPlugin>1.0-SNAPSHOT</version.netAgilhardMaven.agilhardConfigMavenPlugin>
+
+    <version.netAgilhardGui.agilhardGuiFramework>1.0-SNAPSHOT</version.netAgilhardGui.agilhardGuiFramework>
+    <version.netAgilhardGui.agilhardGuiFwkSwing>1.0-SNAPSHOT</version.netAgilhardGui.agilhardGuiFwkSwing>
+    <version.netAgilhardGui.agilhardGuiMaven>1.0-SNAPSHOT</version.netAgilhardGui.agilhardGuiMaven>
+    <version.netAgilhardGui.agilhardGuiTerminal>1.0-SNAPSHOT</version.netAgilhardGui.agilhardGuiTerminal>
+    <version.netAgilhardGui.agilhardGuiEditor>1.0-SNAPSHOT</version.netAgilhardGui.agilhardGuiEditor>
+
+    <!-- Osgi -->
+    <version.orgEclipsePlatform.orgEclipseOsgi>3.13.0</version.orgEclipsePlatform.orgEclipseOsgi>
+
+    <!-- Logging -->
+    <version.chQosLogback>1.3.0-alpha4</version.chQosLogback>
+    <version.orgSlf4j>1.8.0-beta2</version.orgSlf4j>
+    <version.commonsLogging.commonsLogging>1.2</version.commonsLogging.commonsLogging>
+
+    <!-- Testing -->
+    <version.junit.junit>4.12</version.junit.junit>
+    <version.orgHamcrest>2.0.0.0</version.orgHamcrest>
+
+    <version.auComDius.pactJvm>3.5.21</version.auComDius.pactJvm>
+    <version.orgDbUnit.dbUnit>2.5.4</version.orgDbUnit.dbUnit>
+    <version.orgTestng.testng>6.14.3</version.orgTestng.testng>
+
+    <!-- Spring -->
+
+    <version.deCodecentric.springBootAdminServer>2.0.2</version.deCodecentric.springBootAdminServer>
+    <version.orgSpringFramework>5.0.8.RELEASE</version.orgSpringFramework>
+    <version.orgSpringframeworkBoot>2.0.4.RELEASE</version.orgSpringframeworkBoot>
+    <version.orgSpringframeworkCloud.springCloudStarter>1.4.5.RELEASE</version.orgSpringframeworkCloud.springCloudStarter>
+    <version.orgSpringframeworkSecurity.springSecurityCore>5.0.7.RELEASE</version.orgSpringframeworkSecurity.springSecurityCore>
+
+    <version.springBootMavenPlugin>2.0.4.RELEASE</version.springBootMavenPlugin>
+
+    <!-- misc Thirdparty -->
+    <version.aopalliance.aopalliance>1.0</version.aopalliance.aopalliance>
+
+    <version.comFasterxml.classmate>1.4.0</version.comFasterxml.classmate>
+    <version.comFasterxmlJackson>2.9.6</version.comFasterxmlJackson>
+
+    <version.comFifesoft.rsyntaxtextarea>2.6.1</version.comFifesoft.rsyntaxtextarea>
+    <version.comFifesoft.autocomplete>2.6.1</version.comFifesoft.autocomplete>
+    <version.comFifesoft.languagesupport>2.6.0</version.comFifesoft.languagesupport>
+    <version.comFifesoft.rstaui>2.6.1</version.comFifesoft.rstaui>
+    <version.comFifesoft.spellchecker>2.6.0</version.comFifesoft.spellchecker>
+
+    <version.comGithubJavaparser>3.6.19</version.comGithubJavaparser>
+
+    <version.comGoogleCodeMavenReplacerPlugin>1.5.3</version.comGoogleCodeMavenReplacerPlugin>
+
+    <version.comGoogleCodeSli4j.sli4jSlf4jLogback>2.0</version.comGoogleCodeSli4j.sli4jSlf4jLogback>
+
+    <version.comGoogleGuava.guava>26.0-jre</version.comGoogleGuava.guava>
+
+    <version.commonsCodec.commonsCodec>1.11</version.commonsCodec.commonsCodec>
+    <version.commonsCollections.commonsCollections>3.2.1</version.commonsCollections.commonsCollections>
+    <version.commonsHttpclient.commonsHttpclient>3.1</version.commonsHttpclient.commonsHttpclient>
+    <version.commonsIo.commonsIo>2.4</version.commonsIo.commonsIo>
+    <version.commonsLang.commonsLang>2.6</version.commonsLang.commonsLang>
+    <version.commonsNet.commonsNet>3.3</version.commonsNet.commonsNet>
+
+    <version.comPuppycrawlTools.checkstyle>8.12</version.comPuppycrawlTools.checkstyle> 
+
+
+    <!-- TODO: version 2.11 introduced a bug which causes a NPE when resource artifacts are not found, check if this is fixed now with current version -->
+    <version.comSunJersey.jerseyClient>1.19.4</version.comSunJersey.jerseyClient>
+    <version.comVaadinExternalGoogle.androidJson>0.0.20131108.vaadin1</version.comVaadinExternalGoogle.androidJson>
+    <version.czSickboyNetbeans.netbeansCheckstyleExtra>4.1.0</version.czSickboyNetbeans.netbeansCheckstyleExtra>
+
+    <version.dom4j.dom4j>1.6.1</version.dom4j.dom4j>
+    <version.gnuGetopt.javaGetopt>1.0.13</version.gnuGetopt.javaGetopt>
+
+    <version.ioFabric8Arquillian>3.0.8</version.ioFabric8Arquillian>
+    <version.ioFabric8KubernetesAssertions>3.0.8</version.ioFabric8KubernetesAssertions>
+
+    <version.ioGithubOpenfeign.feign>9.5.1</version.ioGithubOpenfeign.feign>
+    <version.ioGithubOpenfeignForm.feignForm>2.2.1</version.ioGithubOpenfeignForm.feignForm>
+    <version.ioRestAssured.restAssured>3.0.5</version.ioRestAssured.restAssured>
+    <version.ioSpringfox.springfoxSwagger2>2.6.1</version.ioSpringfox.springfoxSwagger2>
+    <version.ioVertx>3.4.2</version.ioVertx>
+
+    <version.javaxMail.mail>1.4.7</version.javaxMail.mail>
+
+    <version.javaxServlet.javaxServletApi>4.0.1</version.javaxServlet.javaxServletApi>
+    <version.javaxServlet.jspApi>2.0</version.javaxServlet.jspApi>
+
+    <version.javaxServlet.servletApi>2.5</version.javaxServlet.servletApi>
+
+    <version.javaxValidation.validationApi>2.0.1.Final</version.javaxValidation.validationApi>
+
+    <version.jcifs.jcifs>1.3.17</version.jcifs.jcifs>
+
+    <version.jodaTime.jodaTime>2.10</version.jodaTime.jodaTime>
+    <version.netDiibadaabaZipdiff.zipdiff>1.0</version.netDiibadaabaZipdiff.zipdiff>
+    <version.netJavaDevJna.jna>4.5.2</version.netJavaDevJna.jna>
+    <version.netJavaDevJna.jnaPlatform>4.5.2</version.netJavaDevJna.jnaPlatform>
+
+    <version.netMinidev.accessorsSmart>1.2</version.netMinidev.accessorsSmart>
+    <version.netMinidev.jsonSmart>2.3</version.netMinidev.jsonSmart>
+
+    <version.netSfJacobProject.jacob>1.14.3</version.netSfJacobProject.jacob>
+
+    <version.netSfOpencsv.opencsv>2.3</version.netSfOpencsv.opencsv>
+
+    <version.nzNetUltraqThymeleaf.thymeleafExpressionProcessor>1.1.3</version.nzNetUltraqThymeleaf.thymeleafExpressionProcessor>
+    <version.nzNetUltraqThymeleaf.thymeleafLayoutDialect>2.2.2</version.nzNetUltraqThymeleaf.thymeleafLayoutDialect>
+
+    <version.orgApacheAnt.ant>1.9.2</version.orgApacheAnt.ant>
+    <version.orgApacheCommons.commonsCompress>1.5</version.orgApacheCommons.commonsCompress>
+    <version.orgApacheCommons.commonsIo>1.3.2</version.orgApacheCommons.commonsIo>
+    <version.orgApacheCommons.commonsLang3>3.4</version.orgApacheCommons.commonsLang3>
+    <version.orgApacheCommons.commonsVfs2>2.2</version.orgApacheCommons.commonsVfs2>
+    <version.orgApacheHadoop.hadoopCore>1.2.0</version.orgApacheHadoop.hadoopCore>
+    <version.orgApacheHttpcomponents.httpclient>4.5.3</version.orgApacheHttpcomponents.httpclient>
+    <version.orgApacheHttpcomponents.httpcore>4.4.6</version.orgApacheHttpcomponents.httpcore>
+    <version.orgApacheJackrabbit.jackrabbitWebdav>2.10.1</version.orgApacheJackrabbit.jackrabbitWebdav>
+    <version.orgApacheLoggingLog4j>2.5</version.orgApacheLoggingLog4j>
+
+    <version.orgApacheMaven>3.5.2</version.orgApacheMaven>
+
+    <version.orgApacheMavenPluginTools.mavenPluginAnnotations>3.2</version.orgApacheMavenPluginTools.mavenPluginAnnotations>
+    <version.orgApacheMavenShared.fileManagement>1.2.1</version.orgApacheMavenShared.fileManagement>
+    <version.orgApacheMavenShared.mavenJarsigner>1.3.1</version.orgApacheMavenShared.mavenJarsigner>
+    <version.orgApachePoi.poi>3.10-FINAL</version.orgApachePoi.poi>
+    <version.orgApacheTomcat.tomcatJuli>8.5.23</version.orgApacheTomcat.tomcatJuli>
+    <version.orgApacheTomcatEmbed>8.5.20</version.orgApacheTomcatEmbed>
+    <version.orgAspectj.aspectjrt>1.8.1</version.orgAspectj.aspectjrt>
+    <version.orgAspectj>1.8.10</version.orgAspectj>
+    <version.orgAssertj.assertjCore>2.6.0</version.orgAssertj.assertjCore>
+    <version.orgAttoparser.attoparser>2.0.4.RELEASE</version.orgAttoparser.attoparser>
+    <version.orgCodehausGroovy.groovy>2.4.6</version.orgCodehausGroovy.groovy>
+    <version.orgCodehausPlexus.plexusClassworlds>2.4</version.orgCodehausPlexus.plexusClassworlds>
+    <version.orgDbunit.dbunit>2.4.8</version.orgDbunit.dbunit>
+    <version.orgEclipseAether.aetherConnectorWagon>1.13.1</version.orgEclipseAether.aetherConnectorWagon>
+    <version.orgEclipseM2e.lifecycleMapping>1.0.0</version.orgEclipseM2e.lifecycleMapping>
+    <version.orgHibernate.hibernateValidator>5.3.5.Final</version.orgHibernate.hibernateValidator>
+    <version.orgJasigCas.client>3.4.1</version.orgJasigCas.client>
+    <version.orgJbossLogging.jbossLogging>3.3.0.Final</version.orgJbossLogging.jbossLogging>
+    <version.orgJbossArquillian>1.3.0.Final</version.orgJbossArquillian>
+    <version.orgJdom.jdom>2.0.2</version.orgJdom.jdom>
+    <version.orgJsmiparser>0.13</version.orgJsmiparser>
+    <version.orgKeycloak>3.3.0.CR2</version.orgKeycloak>
+    <version.orgMockito.mockitoCore>1.10.19</version.orgMockito.mockitoCore>
+    <version.orgMozilla.rhino>1.7R4</version.orgMozilla.rhino>
+    <version.orgObjenesis.objenesis>2.1</version.orgObjenesis.objenesis>
+    <version.orgOw2Asm.asm>5.0.3</version.orgOw2Asm.asm>
+    <version.orgPostgresql.postgresql>42.2.5</version.orgPostgresql.postgresql>
+    <version.orgReflections.reflections>0.9.11</version.orgReflections.reflections>
+    <version.orgSkyscreamer.jsonassert>1.4.0</version.orgSkyscreamer.jsonassert>
+    <version.orgSnmp4j.snmp4j>2.5.6</version.orgSnmp4j.snmp4j>
+    <version.orgSnmp4j.snmp4jAgent>2.5.3</version.orgSnmp4j.snmp4jAgent>
+    <version.orgSonatypeAether.aetherConnectorWagon>1.13.1</version.orgSonatypeAether.aetherConnectorWagon>
+    <version.orgSonatypeAether>1.13.1</version.orgSonatypeAether>
+    <version.orgSonatypeNexus.nexusRestApiModel>2.0.4-1</version.orgSonatypeNexus.nexusRestApiModel>
+    <version.orgSonatypePlexus.plexusCipher>1.7</version.orgSonatypePlexus.plexusCipher>
+    <version.orgSonatypePlexus.plexusSecDispatcher>1.3</version.orgSonatypePlexus.plexusSecDispatcher>
+    <version.orgThymeleaf>3.0.7.RELEASE</version.orgThymeleaf>
+    <version.orgTwdataMaven.mojoExecutor>2.2.0</version.orgTwdataMaven.mojoExecutor>
+    <version.orgUnbescape.unbescape>1.1.5.RELEASE</version.orgUnbescape.unbescape>
+    <version.orgYaml.snakeyaml>1.17</version.orgYaml.snakeyaml>
+    <version.xmlApis.xmlApis>2.0.2</version.xmlApis.xmlApis>
+
+    <!-- == Misc Plugin Versions ==-->
+
+    <version.ioFabric8.dockerMavenPlugin>0.21.0</version.ioFabric8.dockerMavenPlugin>
+    <version.ioFabric8.fabric8MavenPlugin>3.5.33</version.ioFabric8.fabric8MavenPlugin>
+    <version.orgApacheMavenPlugins.mavenCompilerPlugin>3.8.0</version.orgApacheMavenPlugins.mavenCompilerPlugin>
+
+    <version.orgApacheMavenPlugins.mavenCleanPlugin>3.1.0</version.orgApacheMavenPlugins.mavenCleanPlugin>
+    
+    <version.orgApacheMavenPlugins.mavenDeployPlugin>2.8.2</version.orgApacheMavenPlugins.mavenDeployPlugin>
+
+    <version.orgApacheMavenPlugins.mavenEnforcerPlugin>3.0.0-M2</version.orgApacheMavenPlugins.mavenEnforcerPlugin>
+    <version.orgApacheMavenPlugins.mavenInstallPlugin>2.5.2</version.orgApacheMavenPlugins.mavenInstallPlugin>
+    <version.orgApacheMavenPlugins.mavenJarPlugin>3.1.0</version.orgApacheMavenPlugins.mavenJarPlugin>
+
+    <version.orgApacheMavenPlugins.mavenJxrPlugin>2.5</version.orgApacheMavenPlugins.mavenJxrPlugin>
+
+    <version.orgApacheMavenPlugins.mavenPluginPlugin>3.5.2</version.orgApacheMavenPlugins.mavenPluginPlugin>
+
+    <version.orgApacheMavenPlugins.mavenResourcesPlugin>3.0.2</version.orgApacheMavenPlugins.mavenResourcesPlugin>
+
+    <version.orgApacheMavenPlugins.mavenSurefirePlugin>2.22.0</version.orgApacheMavenPlugins.mavenSurefirePlugin>
+
+    <version.orgApacheMavenPlugins.mavenSourcePlugin>3.0.1</version.orgApacheMavenPlugins.mavenSourcePlugin>
+
+    <version.orgApacheMavenPlugins.mavenProjectInfoReportsPlugin>3.0.0</version.orgApacheMavenPlugins.mavenProjectInfoReportsPlugin>
+
+    <version.orgApacheMavenPlugins.mavenSitePlugin>3.7.1</version.orgApacheMavenPlugins.mavenSitePlugin>
+
+    <version.orgApacheMavenWagon>2.12</version.orgApacheMavenWagon>
+
+    <version.orgCodehauseMojo.versionsMavenPlugin>2.3</version.orgCodehauseMojo.versionsMavenPlugin>
+
+
+    <version.orgApacheMavenPlugins.mavenAssemblyPlugin>3.0.0</version.orgApacheMavenPlugins.mavenAssemblyPlugin>
+
+    <version.orgCodehausMojo.webstartMavenPlugin>1.0-beta-7</version.orgCodehausMojo.webstartMavenPlugin>
+
+    <version.orgCodehausMojo.webstartPack200Impl>1.0-beta-6</version.orgCodehausMojo.webstartPack200Impl>
+
+    <version.orgCodehausMojo.keytoolApi17>1.5</version.orgCodehausMojo.keytoolApi17>
+    
+
+    <version.orgOwasp.dependencyCheckMaven>1.4.5</version.orgOwasp.dependencyCheckMaven>
+
+<!--
+    <version.deFmsFork.webstartMavenPlugin>1.0-beta-8-SNAPSHOT</version.deFmsFork.webstartMavenPlugin>
+-->
+    <version.orgApacheFelix.mavenBundlePlugin>3.5.0</version.orgApacheFelix.mavenBundlePlugin>
+
+    <version.orgApacheMavenPlugins.mavenAntrunPlugin>1.8</version.orgApacheMavenPlugins.mavenAntrunPlugin>
+
+    <version.orgApacheMavenPlugins.mavenCheckstylePlugin>2.17</version.orgApacheMavenPlugins.mavenCheckstylePlugin>
+    <version.orgApacheMavenPlugins.mavenDependencyPlugin>2.8</version.orgApacheMavenPlugins.mavenDependencyPlugin> <!-- do not update to 3.x for compatibility with CopyArtifactMojo -->
+    <version.orgApacheMavenPlugins.mavenEclipsePlugin>2.8</version.orgApacheMavenPlugins.mavenEclipsePlugin>
+    <version.orgApacheMavenPlugins.mavenHelpPlugin>2.2</version.orgApacheMavenPlugins.mavenHelpPlugin>
+    <version.orgApacheMavenPlugins.mavenInvokerPlugin>1.9</version.orgApacheMavenPlugins.mavenInvokerPlugin>
+    <version.orgApacheMavenPlugins.mavenJarSignerPlugin>1.4</version.orgApacheMavenPlugins.mavenJarSignerPlugin>
+    <version.orgApacheMavenPlugins.mavenJavadocPlugin>3.0.0-M1</version.orgApacheMavenPlugins.mavenJavadocPlugin>
+
+    <version.orgApacheMavenPlugins.mavenPmdPlugin>3.8</version.orgApacheMavenPlugins.mavenPmdPlugin>
+
+    <version.orgApacheMavenPlugins.mavenSurefireReportPlugin>2.20.1</version.orgApacheMavenPlugins.mavenSurefireReportPlugin>
+    <version.orgApacheMavenPlugins.mavenWarPlugin>3.1.0</version.orgApacheMavenPlugins.mavenWarPlugin>
+
+    <version.orgApacheTomcatMaven.tomcat7MavenPlugin>2.2</version.orgApacheTomcatMaven.tomcat7MavenPlugin>
+
+    <version.orgCodehausMojo.buildHelperMavenPlugin>1.12</version.orgCodehausMojo.buildHelperMavenPlugin>
+    <version.orgCodehausMojo.findbugsMavenPlugin>3.0.4</version.orgCodehausMojo.findbugsMavenPlugin>
+    <version.orgCodehausMojo.nativeMavenPlugin>1.0-alpha-8</version.orgCodehausMojo.nativeMavenPlugin>
+    <version.orgCodehausMojo.taglistMavenPlugin>2.4</version.orgCodehausMojo.taglistMavenPlugin>
+    <version.orgCodehausMojo.truezipMavenPlugin>1.2</version.orgCodehausMojo.truezipMavenPlugin>
+    <version.orgCodehausMojo.versionsMavenPlugin>2.3</version.orgCodehausMojo.versionsMavenPlugin>
+    <version.orgCodehausMojoJavascript.javascriptReportMavenPlugin>1.1-softec</version.orgCodehausMojoJavascript.javascriptReportMavenPlugin>
+    <!-- Project Settings -->
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <dependency.locations.enabled>false</dependency.locations.enabled>
+
+    <javac.version.src>1.10</javac.version.src>
+    <javac.version.target>1.10</javac.version.target>
+
+  </properties>
+
+  <modules>
+    <module>agilhard-align-logging</module>
+    <module>agilhard-align-test</module>
+    <module>agilhard-align-spring</module>
+    <module>agilhard-align-misc</module>
+    <module>agilhard-align-microservices</module>
+    <module>agilhard-align-tentackle2</module>
+    <module>agilhard-align-agilhard</module>
+    <module>agilhard-align-project</module>
+    <module>agilhard-align-tentackle2-project</module>
+    <module>agilhard-align-kubernetes-project</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${version.orgApacheMavenPlugins.mavenSitePlugin}</version>
+          <configuration>
+            <siteDirectory>${rootBasedir}/src/site</siteDirectory>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-ssh</artifactId>
+              <version>${version.orgApacheMavenWagon}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenPluginPlugin}</version>
+        <configuration>
+          <requirements>
+            <maven>3.0</maven>
+          </requirements>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenJavadocPlugin}</version>
+        <configuration>
+          <sourceFileExcludes>
+            <exclude>**/rmi/*.java</exclude>
+          </sourceFileExcludes>
+          <stylesheetfile>${rootBasedir}/src/site/resources/css/apidocs.css</stylesheetfile>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenJxrPlugin}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>${version.orgApacheMavenPlugins.mavenProjectInfoReportsPlugin}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>${version.orgCodehauseMojo.versionsMavenPlugin}</version>
+        <reportSets>
+          <reportSet>
+            <id>versions</id>
+            <reports>
+              <report>dependency-updates-report</report>
+              <report>plugin-updates-report</report>
+              <report>property-updates-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <distributionManagement>
+    <site>
+      <id>${site.id}</id>
+      <url>scp://${site.id}/agilhard-doc/${project.artifactId}/${project.version}/</url>
+    </site>
+    <repository>
+      <id>${repo.id}</id>
+      <name>Release Repository</name>
+      <url>${repo.releases.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>${repo.id}</id>
+      <name>Snapshot Repository</name>
+      <url>${repo.snapshots.url}</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <scm>
+    <developerConnection>scm:git:${scm.base.url}/agilhard-align-modules</developerConnection>
+  </scm>
+</project>
