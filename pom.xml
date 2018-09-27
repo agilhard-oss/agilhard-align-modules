@@ -8,6 +8,13 @@
   <name>Agilhard Align - Align Parent Project</name>
   <description>Agilhard Align - Align Parent Project</description>
 
+  <licenses>
+    <license>
+      <name>LGPL</name>
+      <url>http://www.gnu.org/licenses/lgpl.html</url>
+    </license>
+  </licenses>
+
   <inceptionYear>2018</inceptionYear>
   <url>${site.base.url}/${this.artifactId}</url>
 
