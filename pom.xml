@@ -128,8 +128,8 @@
     <version.orgEclipsePlatform.orgEclipseOsgi>3.13.0</version.orgEclipsePlatform.orgEclipseOsgi>
 
     <!-- Logging -->
-    <version.chQosLogback>1.3.0-alpha4</version.chQosLogback>
-    <version.orgSlf4j>1.8.0-beta2</version.orgSlf4j>
+    <version.chQosLogback>1.2.3</version.chQosLogback>
+    <version.orgSlf4j>1.7.25</version.orgSlf4j>
     <version.commonsLogging.commonsLogging>1.2</version.commonsLogging.commonsLogging>
 
     <!-- Testing -->
